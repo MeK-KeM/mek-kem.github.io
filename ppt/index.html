@@ -1,49 +1,292 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+	<title>reveal.js</title>
 
-		<link rel="stylesheet" href="css/reset.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement( 'link' );
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+	<style>
+		.reveal {
+			background: #0D3349;
+		}
+		.no_capital {
+			text-transform: none !important;
+		}
+		.image_box {
+			display: inline-flex;
+			flex-flow: row;
+			flex-wrap: wrap;
+		}
+		.image_box img {
+			width: 160px;
+			border: none !important;
+			background-color: white !important;
+		}
+		.image_box img + img {
+			margin-left: 20px;
+			width: 500px;
+		}
+		.image_box--big img {
+			width: 100%;
+			display: block;
+		}
+		.align-center {
+			justify-content: center;
+			align-items: center;
+		}
+		p > span {
+			color: orange;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+<!--<aside class="notes">
+    Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit »S« on your keyboard).
+</aside>-->
+<div class="reveal">
+	<div class="slides">
+		<section>
+			<h2>
+				Flux
+			</h2>
+			<p>(Single Data Grow Architecture)</p>
+			<p>Архитектура единого потока данных</p>
 
-		<script src="js/reveal.js"></script>
+			<aside class="notes">
+				Flux
+				<br>
+				это архитектура единого потока данных (Single Data Grow Architecture).
+			</aside>
+		</section>
+		<section>
+			<section>
+				<h3 class="no_capital">Что такое Flux?</h3>
+				<h4 class="no_capital">Зачем нужен Flux?</h4>
+				<aside class="notes">
+					1. Что такое Flux?
+					<br>
+					2. Зачем нужен Flux?
+				</aside>
+			</section>
+			<section>
+				<div style="text-align: left">
+					<b>Flux</b> - это архитектура единого потока данных. Он был разработан на Facebook вместе с библиотекой React View в 2011 году. Он делает акцент на создании явных и понятных путей обновления данных вашего приложения, что упрощает отслеживание изменений в процессе разработки и облегчает поиск и устранение ошибок.
+				</div>
+				<div class="image_box">
+					<img src="./images/124010.png" alt="">
+					<img src="./images/image1.PNG" alt="">
+				</div>
+				<aside class="notes">
+					Flux - это архитектура единого потока данных. Он был разработан на Facebook вместе с библиотекой React View в 2011 году. Он делает акцент на создании явных и понятных путей обновления данных вашего приложения, что упрощает отслеживание изменений в процессе разработки и облегчает поиск и устранение ошибок.
+				</aside>
+			</section>
+			<section>
+				<div class="image_box image_box--big">
+					<img src="./images/image_history_1.PNG" alt="">
+				</div>
+			</section>
+			<section>
+				<h2>Тут bug)</h2>
+				<div class="image_box image_box--big">
+					<img src="./images/image2.PNG" alt="">
+				</div>
+				<p>До flux facebook исползовал MVC...</p>
+				<aside class="notes">
+					Разработчики Facebook нашли ошибку с message notification где было не обработанный счётчик сообщение
+				</aside>
+			</section>
+			<section>
+				<h5>Архитектура потока данных - MVC</h5>
+				<div class="image_box image_box--big">
+					<img src="./images/1__lFFicPgct2xaFAi68SYvQ.png" alt="">
+				</div>
+				<aside class="notes">
+					MVC был лучше для маленьких проектов где меньше модуль.
+					<br>
+					Тут чем больше модуль тем больше возникает проблем
+				</aside>
+			</section>
+			<section>
+				<h5>Архитектура потока данных - Flux</h5>
+				<div class="image_box image_box--big">
+					<img src="./images/1_T5PVlZNGloFMmIEWlJwbKQ.png" alt="">
+				</div>
+				<aside class="notes">
+					Архитектура единого потока данных Flux исправляет не достатки из MVC
+				</aside>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h5 class="no_capital">Как использовать Flux?</h5>
+				<aside class="notes">
+					Мы будем посмотреть на примере интернет магазина
+				</aside>
+			</section>
+			<section>
+				<p>Например у нас есть интернет магазин.</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_0.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					Например у нас есть интернет магазин.
+				</aside>
+			</section>
+			<section>
+				<p>Заказчик добавил товар в карзинку.</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_1.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					Заказчик добавил товар в карзинку.
+				</aside>
+			</section>
+			<section>
+				<p>Отправим запрос на сервер.</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_2.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					Отправим запрос на сервер.
+				</aside>
+			</section>
+			<section>
+				<p>Получаем запрос от сервера.</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_3.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					Получаем запрос от сервера.
+				</aside>
+			</section>
+			<section>
+				<p>На диспечер попадает action.</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_4.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					На диспечер попадает action.
+				</aside>
+			</section>
+			<section>
+				<p>У нас есть три хранилише и action попадает на CartStore и обрабативает handleCartChanged().</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_6.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					У нас есть три хранилише и action попадает на CartStore и обрабативает handleCartChanged().
+				</aside>
+			</section>
+			<section>
+				<p>Отправляем измененую состаяние cart на View (DOM).</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_7.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					Отправляем измененую состаяние cart на View (DOM).
+				</aside>
+			</section>
+			<section>
+				<p>Получаем состаяние cart</p>
+				<div class="image_box image_box--big align-center">
+					<img src="./images/image_8.PNG" alt="alt">
+				</div>
+				<aside class="notes">
+					Получаем состаяние cart
+				</aside>
+			</section>
+		</section>
+		<section>
+			<section>
+				Flux vs Redux
+				<aside class="notes">
+					Flux против Redux.
+				</aside>
+			</section>
+			<section>
+				<div class="image_box image_box--big">
+					<img src="./images/1_3lvNEQE4SF6Z1l-680cfSQ.jpeg" alt="">
+				</div>
+				<aside class="notes">
+					Flux против Redux.
+					<br>
+					ресурс: https://medium.com/@dakota.lillie/flux-vs-redux-a-comparison-bbd5000d5111
+				</aside>
+			</section>
+			<section>
+				<div class="image_box image_box--big">
+					<img src="./images/image_redux_versus_2.PNG" alt="">
+				</div>
+				<aside class="notes">
+					Flux против Redux.
+					<br>
+					ресурс: https://medium.com/@dakota.lillie/flux-vs-redux-a-comparison-bbd5000d5111
+				</aside>
+			</section>
+			<section>
+				<div class="image_box image_box--big">
+					<img src="./images/image_redux_versus_1.PNG" alt="">
+				</div>
+				<aside class="notes">
+					Flux против Redux.
+					<br>
+					ресурс: https://medium.com/@dakota.lillie/flux-vs-redux-a-comparison-bbd5000d5111
+				</aside>
+			</section>
+		</section>
+		<section>
+			<section>
+				<h6>Заключение</h6>
+				<div>
+					<p>Зная <span>Flux</span> используйте <span>Redux</span> вот и всё ;)</p>
+				</div>
+				<aside class="notes">
+					<p>Зная Flux используйте Redux вот и всё ;)</p>
+				</aside>
+			</section>
+			<section>
+				<div>
+					<video autoplay loop>
+						<source data-src="./images/giphy.mp4" type="video/mp4" />
+					</video>
+				</div>
+				<p>Спасибо за внимание...</p>
+			</section>
+		</section>
+	</div>
+</div>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
-				]
-			});
-		</script>
-	</body>
+<script src="js/reveal.js"></script>
+
+<script>
+	// More info about config & dependencies:
+	// - https://github.com/hakimel/reveal.js#configuration
+	// - https://github.com/hakimel/reveal.js#dependencies
+	Reveal.initialize({
+		dependencies: [
+			{ src: 'plugin/markdown/marked.js' },
+			{ src: 'plugin/markdown/markdown.js' },
+			{ src: 'plugin/notes/notes.js', async: true },
+			{ src: 'plugin/highlight/highlight.js', async: true }
+		]
+	});
+</script>
+</body>
 </html>
